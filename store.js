@@ -52,6 +52,6 @@ const store = {
             delta
         }
 
-        console.log(JSON.stringify(this.hoveredDistricts, null, 4))
+        updateUI();
     }
 }

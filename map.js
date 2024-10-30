@@ -22,20 +22,22 @@ var _2020 = new maplibregl.Map({
 });
 
 _2020.on('styledata', () => {
-    _2020.addSource('2020_results_src', {
-        'type': 'geojson',
-        'data': '2020.geojson'
-    })
-    _2020.addLayer({
-        'id': '2020_results',
-        'type': 'fill',
-        'source': '2020_results_src',
-        'layout': {},
-        'paint': {
-            'fill-color': fillExp,
-            'fill-opacity': 0.8
-        }
-    }, 'airport-label');
+    if (!_2020.getSource('2020_results_src')) {
+        _2020.addSource('2020_results_src', {
+            'type': 'geojson',
+            'data': '2020.geojson'
+        })
+        _2020.addLayer({
+            'id': '2020_results',
+            'type': 'fill',
+            'source': '2020_results_src',
+            'layout': {},
+            'paint': {
+                'fill-color': fillExp,
+                'fill-opacity': 0.8
+            }
+        }, 'airport-label');
+    }
 })
 
 //////////////////////////////////////////////////
@@ -50,20 +52,22 @@ var _2024 = new maplibregl.Map({
 });
 
 _2024.on('styledata', () => {
-    _2024.addSource('2024_results_src', {
-        'type': 'geojson',
-        'data': '2024.geojson'
-    })
-    _2024.addLayer({
-        'id': '2024_results',
-        'type': 'fill',
-        'source': '2024_results_src',
-        'layout': {},
-        'paint': {
-            'fill-color': fillExp,
-            'fill-opacity': 0.8
-        }
-    }, 'airport-label');
+    if (!_2024.getSource('2024_results_src')) {
+        _2024.addSource('2024_results_src', {
+            'type': 'geojson',
+            'data': '2024.geojson'
+        })
+        _2024.addLayer({
+            'id': '2024_results',
+            'type': 'fill',
+            'source': '2024_results_src',
+            'layout': {},
+            'paint': {
+                'fill-color': fillExp,
+                'fill-opacity': 0.8
+            }
+        }, 'airport-label');
+    }
 });
 
 //////////////////////////////////////////////////
@@ -85,10 +89,14 @@ _2024.on('mousemove', '2024_results', (e) => {
 
     const _2020Info = _2020.queryRenderedFeatures(e.point, { layers: ['2020_results'] });
     store.setHoveredDistricts(_2020Info[0].properties, e.features[0].properties);
+
+    document.getElementsByClassName('ed').forEach(e => e.innerHTML = e.features[0].properties.elect_dist)
+
 });
 
 _2024.on('mouseleave', '2024_results', () => {
     _2024.getCanvas().style.cursor = '';
+    document.getElementsByClassName('ed').forEach(e => e.innerHTML = '')
 });
 
 _2020.on('mousemove', '2020_results', (e) => {
@@ -96,8 +104,12 @@ _2020.on('mousemove', '2020_results', (e) => {
     _2020.getCanvas().style.cursor = 'pointer';
     const _2024Info = _2024.queryRenderedFeatures(e.point, { layers: ['2024_results'] });
     store.setHoveredDistricts(_2024Info[0].properties, e.features[0].properties);
+    document.getElementsByClassName('ed').forEach(e => e.innerHTML = e.features[0].properties.elect_dist);
+
 });
 
 _2020.on('mouseleave', '2020_results', () => {
     _2020.getCanvas().style.cursor = '';
+    document.getElementsByClassName('ed').forEach(e => e.innerHTML = '')
+
 });

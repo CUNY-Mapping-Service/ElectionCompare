@@ -27,6 +27,8 @@
             width: 100%;
         }
     </style>
+    <script src="maplibre-gl-compare.js"></script>
+    <link rel="stylesheet" href="maplibre-gl-compare.css" type="text/css" />
 </head>
 
 <body>
@@ -65,16 +67,87 @@
         }
 
         #opacity-container {}
+
+        .table-container {
+            position: absolute;
+            z-index: 2;
+            margin: 5px;
+            min-width: 40%;
+
+        }
+
+        .table-container#numbers {
+            right: 0;
+        }
     </style>
-    <div id="opacity-container">
+    <!-- <div id="opacity-container">
         <label for="opacity-slider" class="form-label">Overlay Opacity</label>
         <input value="80" type="range" class="form-range" id="opacity-slider">
+    </div> -->
+    <div class="table-container" id="percents">
+        <table class="table table-bordered">
+            <thead>
+                <h5 style="background-color: lightgray; padding:5px;">2020/2024 Percents: <span
+                        class="ed"></span></span></h5>
+                <tr>
+                    <th>2020</th>
+                    <th>2024</th>
+                    <th>Percent Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="pct-value" id="biden-2020">Biden 0</td>
+                    <td class="pct-value" id="harris-2024">Harris 0</td>
+                    <td class="pct-value" id="dem-delta">Dem 0</td>
+                </tr>
+                <tr>
+                    <td class="pct-value" id="trump-2020">Trump 0</td>
+                    <td class="pct-value" id="trump-2024">Trump 0</td>
+                    <td class="pct-value" id="gop-delta">GOP 0</td>
+                </tr>
+                <tr>
+                    <td class="pct-value" id="other-2020">Other 0</td>
+                    <td class="pct-value" id="other-2024">Other 0</td>
+                    <td class="pct-value" id="other-delta">Other 0</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div id="legend">
+    <div class="table-container" id="numbers">
+        <table class="table table-bordered">
+            <thead>
+                <h5 style="background-color: lightgray; padding:5px;">2020/2024 Votes: <span class="ed"></span></span>
+                </h5>
+                <tr>
+                    <th>2020</th>
+                    <th>2024</th>
+                    <th>Numeric Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="num-value" id="biden-2020">Biden 0</td>
+                    <td class="num-value" id="harris-2024">Harris 0</td>
+                    <td class="num-value" id="dem-delta">Dem 0</td>
+                </tr>
+                <tr>
+                    <td class="num-value" id="trump-2020">Trump 0</td>
+                    <td class="num-value" id="trump-2024">Trump 0</td>
+                    <td class="num-value" id="gop-delta">GOP 0</td>
+                </tr>
+                <tr>
+                    <td class="num-value" id="other-2020">Other 0</td>
+                    <td class="num-value" id="other-2024">Other 0</td>
+                    <td class="num-value" id="other-delta">Other 0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <div id="legend">
         <h5>Harris Vote Share</h5>
-    </div>
-    <script src="maplibre-gl-compare.js"></script>
-    <link rel="stylesheet" href="maplibre-gl-compare.css" type="text/css" />
+    </div> -->
+
     <div id="comparison-container">
         <div id="before" class="map"></div>
         <div id="after" class="map"></div>
