@@ -1,5 +1,6 @@
 const store = {
     hoveredDistricts: {
+        ed: undefined,
         _2024: undefined,
         _2020: undefined,
         delta: undefined
@@ -7,7 +8,8 @@ const store = {
     setHoveredDistricts: function (_2020Info, _2024Info) {
         // this.hoveredDistricts._2020 = _2020Info;
         // this.hoveredDistricts._2024 = _2024Info;
-        const _2020 = {}, _2024 = {}, delta = {};
+
+        const _2020 = { elect_dist: _2020Info.elect_dist }, _2024 = { elect_dist: _2024Info.elect_dist }, delta = {};
         _2020.pct = {
             dem: _2020Info.dem.toFixed(2),
             gop: _2020Info.gop.toFixed(2),

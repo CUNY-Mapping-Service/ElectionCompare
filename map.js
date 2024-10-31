@@ -13,6 +13,8 @@ const transformRequest = (url, resourceType) => {
 //////////////////////////////////////////////////
 //Create 2020 Map//
 //////////////////////////////////////////////////
+let hovered2020PolygonId = null;
+let hovered2024PolygonId = null;
 var _2020 = new maplibregl.Map({
     container: "before",
     style: "mapbox://styles/wfield-cuny/cl0s6ydly000014nmcial1tgu",
@@ -25,7 +27,8 @@ _2020.on('styledata', () => {
     if (!_2020.getSource('2020_results_src')) {
         _2020.addSource('2020_results_src', {
             'type': 'geojson',
-            'data': '2020.geojson'
+            'data': '2020.geojson',
+            'promoteId': 'elect_dist'
         })
         _2020.addLayer({
             'id': '2020_results',
@@ -35,6 +38,21 @@ _2020.on('styledata', () => {
             'paint': {
                 'fill-color': fillExp,
                 'fill-opacity': 0.8
+            }
+        }, 'airport-label');
+        _2020.addLayer({
+            'id': '2020_results-line',
+            'type': 'line',
+            'source': '2020_results_src',
+            'layout': {},
+            'paint': {
+                'line-color': '#0fff',
+                'line-opacity': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    3,
+                    0
+                ]
             }
         }, 'airport-label');
     }
@@ -55,7 +73,8 @@ _2024.on('styledata', () => {
     if (!_2024.getSource('2024_results_src')) {
         _2024.addSource('2024_results_src', {
             'type': 'geojson',
-            'data': '2024.geojson'
+            'data': '2024.geojson',
+            'promoteId': 'elect_dist'
         })
         _2024.addLayer({
             'id': '2024_results',
@@ -65,6 +84,22 @@ _2024.on('styledata', () => {
             'paint': {
                 'fill-color': fillExp,
                 'fill-opacity': 0.8
+            }
+        }, 'airport-label');
+
+        _2024.addLayer({
+            'id': '2024_results-line',
+            'type': 'line',
+            'source': '2024_results_src',
+            'layout': {},
+            'paint': {
+                'line-color': '#0fff',
+                'line-opacity': [
+                    'case',
+                    ['boolean', ['feature-state', 'hover'], false],
+                    3,
+                    0
+                ]
             }
         }, 'airport-label');
     }
@@ -83,33 +118,102 @@ var map = new maplibregl.Compare(_2020, _2024, container, {
 //////////////////////////////////////////////////
 //Hover///
 //////////////////////////////////////////////////
+let swiper = false;
+document.getElementsByClassName('compare-swiper-vertical')[0].addEventListener('mouseenter', () => {
+    swiper = true;
+    Array.from(document.getElementsByClassName('table-container')).forEach(e => e.style.display = 'inline-block')
+
+});
+document.getElementsByClassName('compare-swiper-vertical')[0].addEventListener('mouseleave', () => {
+    swiper = false;
+
+});
 _2024.on('mousemove', '2024_results', (e) => {
+    Array.from(document.getElementsByClassName('table-container')).forEach(e => e.style.display = 'inline-block')
+    if (swiper) return;
+    if (hovered2020PolygonId !== null) {
+        _2020.setFeatureState(
+            { source: '2020_results_src', id: hovered2020PolygonId },
+            { hover: false }
+        );
+    }
+    if (e.features.length > 0) {
+        if (hovered2024PolygonId !== null) {
+            _2024.setFeatureState(
+                { source: '2024_results_src', id: hovered2024PolygonId },
+                { hover: false }
+            );
+        }
+        hovered2024PolygonId = e.features[0].id;
+        _2024.setFeatureState(
+            { source: '2024_results_src', id: hovered2024PolygonId },
+            { hover: true }
+        );
+    }
     // Change the cursor style as a UI indicator.
     _2024.getCanvas().style.cursor = 'pointer';
 
     const _2020Info = _2020.queryRenderedFeatures(e.point, { layers: ['2020_results'] });
     store.setHoveredDistricts(_2020Info[0].properties, e.features[0].properties);
-
-    document.getElementsByClassName('ed').forEach(e => e.innerHTML = e.features[0].properties.elect_dist)
-
 });
 
-_2024.on('mouseleave', '2024_results', () => {
+_2024.on('mouseleave', '2024_results', (e) => {
+
+    if (swiper) return;
+    if (hovered2020PolygonId !== null) {
+        _2020.setFeatureState(
+            { source: '2020_results_src', id: hovered2020PolygonId },
+            { hover: false }
+        );
+    }
+    hovered2020PolygonId = null;
     _2024.getCanvas().style.cursor = '';
-    document.getElementsByClassName('ed').forEach(e => e.innerHTML = '')
+    Array.from(document.getElementsByClassName('table-container')).forEach(e => e.style.display = 'none')
+    Array.from(document.getElementsByClassName('ed')).forEach(e => e.innerHTML = '')
 });
 
 _2020.on('mousemove', '2020_results', (e) => {
+
+    Array.from(document.getElementsByClassName('table-container')).forEach(e => e.style.display = 'inline-block')
+    if (swiper) return;
+    if (hovered2024PolygonId !== null) {
+        _2024.setFeatureState(
+            { source: '2024_results_src', id: hovered2024PolygonId },
+            { hover: false }
+        );
+    }
+    if (e.features.length > 0) {
+        if (hovered2020PolygonId !== null) {
+            _2020.setFeatureState(
+                { source: '2020_results_src', id: hovered2020PolygonId },
+                { hover: false }
+            );
+        }
+        hovered2020PolygonId = e.features[0].id;
+        _2020.setFeatureState(
+            { source: '2020_results_src', id: hovered2020PolygonId },
+            { hover: true }
+        );
+    }
     // Change the cursor style as a UI indicator.
     _2020.getCanvas().style.cursor = 'pointer';
     const _2024Info = _2024.queryRenderedFeatures(e.point, { layers: ['2024_results'] });
     store.setHoveredDistricts(_2024Info[0].properties, e.features[0].properties);
-    document.getElementsByClassName('ed').forEach(e => e.innerHTML = e.features[0].properties.elect_dist);
+    // document.getElementsByClassName('ed').forEach(e => e.innerHTML = e.features[0].properties.elect_dist);
 
 });
 
 _2020.on('mouseleave', '2020_results', () => {
+    if (swiper) return;
+    if (hovered2020PolygonId !== null) {
+        _2020.setFeatureState(
+            { source: '2020_results_src', id: hovered2020PolygonId },
+            { hover: false }
+        );
+    }
+    hovered2020PolygonId = null;
     _2020.getCanvas().style.cursor = '';
-    document.getElementsByClassName('ed').forEach(e => e.innerHTML = '')
+    Array.from(document.getElementsByClassName('table-container')).forEach(e => e.style.display = 'none')
+    Array.from(document.getElementsByClassName('ed')).forEach(e => e.innerHTML = '')
 
 });

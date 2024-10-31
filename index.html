@@ -72,12 +72,60 @@
             position: absolute;
             z-index: 2;
             margin: 5px;
-            min-width: 40%;
+            /* min-width: 40%; */
+            width: 35%;
+            min-width: 300px;
+            max-width: 400px;
+            display: none;
+        }
 
+        @media screen and (max-width: 990px) {
+
+            #legend,
+            .table-container {
+                font-size: x-small;
+            }
+        }
+
+        @media screen and (max-width: 1068px) and (min-width:991px) {
+
+            #legend,
+            .table-container {
+                font-size: small;
+            }
+        }
+
+        @media screen and (max-width: 608px) {
+            .table-container {
+                position: absolute;
+                z-index: 2;
+                margin: 5px;
+                /* min-width: 40%; */
+                width: calc(100% - 10px);
+                max-width: none;
+            }
+
+            .table-container#numbers {
+                left: 0;
+                transform: translateY(90%);
+                margin-top: 0px !important;
+            }
+        }
+
+        td {
+            padding: 1px 5px !important;
         }
 
         .table-container#numbers {
             right: 0;
+        }
+
+        .maplibregl-compare {
+            pointer-events: none;
+        }
+
+        .maplibregl-compare .compare-swiper-vertical {
+            pointer-events: all;
         }
     </style>
     <!-- <div id="opacity-container">
@@ -111,6 +159,11 @@
                     <td class="pct-value" id="other-2024">Other 0</td>
                     <td class="pct-value" id="other-delta">Other 0</td>
                 </tr>
+                <!-- <tr style="font-weight: bold;">
+                    <td class="pct-value" id="dem-total">Total</td>
+                    <td class="pct-value" id="gop-total">Total</td>
+                    <td class="pct-value" id="other-total">Total</td>
+                </tr> -->
             </tbody>
         </table>
     </div>
@@ -141,12 +194,17 @@
                     <td class="num-value" id="other-2024">Other 0</td>
                     <td class="num-value" id="other-delta">Other 0</td>
                 </tr>
+                <tr style="font-weight: bold;">
+                    <td class="num-value" id="total-2020">Total</td>
+                    <td class="num-value" id="total-2024">Total</td>
+                    <td class="num-value" id="total-delta">Total</td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <!-- <div id="legend">
+    <div id="legend">
         <h5>Harris Vote Share</h5>
-    </div> -->
+    </div>
 
     <div id="comparison-container">
         <div id="before" class="map"></div>

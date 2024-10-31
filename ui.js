@@ -8,7 +8,7 @@ if(opSlider){
         _2020.setPaintProperty('2020_results', 'fill-opacity', (+v.target.value / 100))
     })
 }
-
+*/
 
 ///////////////////////////////////////////////////
 //Legend
@@ -22,14 +22,13 @@ if (legend) {
         <span class="pct">Greater than ${colorScale[i].pct}%</span>
     </div>`
     }
-}*/
+}
 
 ///////////////////////////////////////////////////
 //Update UI
 ///////////////////////////////////////////////////
 function updateUI() {
     ////////////////////////////////////////////////
-
     const pctBiden2020 = document.querySelector("#percents #biden-2020");
     pctBiden2020.innerHTML = getInnerHtml('Biden', store.hoveredDistricts._2020.pct.dem, true)
 
@@ -53,10 +52,10 @@ function updateUI() {
     ////////////////////////////////////////////////
 
     const demDeltaPct = document.querySelector("#percents #dem-delta");
-    demDeltaPct.innerHTML = getInnerHtml('Harris', store.hoveredDistricts.delta.pct.dem.toFixed(2), true)
+    demDeltaPct.innerHTML = getInnerHtml('DEM', store.hoveredDistricts.delta.pct.dem.toFixed(2), true)
 
     const gopDeltaPct = document.querySelector("#percents #gop-delta");
-    gopDeltaPct.innerHTML = getInnerHtml('Trump', store.hoveredDistricts.delta.pct.gop.toFixed(2), true)
+    gopDeltaPct.innerHTML = getInnerHtml('GOP', store.hoveredDistricts.delta.pct.gop.toFixed(2), true)
 
     const otherDeltaPct = document.querySelector("#percents #other-delta");
     otherDeltaPct.innerHTML = getInnerHtml('Other', store.hoveredDistricts.delta.pct.other.toFixed(2), true)
@@ -86,15 +85,33 @@ function updateUI() {
     ////////////////////////////////////////////////
 
     const demDelta = document.querySelector("#numbers #dem-delta");
-    demDelta.innerHTML = getInnerHtml('Harris', Math.round(store.hoveredDistricts.delta.numVotes.dem.toFixed(2), false))
+    demDelta.innerHTML = getInnerHtml('DEM', Math.round(store.hoveredDistricts.delta.numVotes.dem.toFixed(2), false))
 
     const gopDelta = document.querySelector("#numbers #gop-delta");
-    gopDelta.innerHTML = getInnerHtml('Trump', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(2), false))
+    gopDelta.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(2), false))
 
     const otherDelta = document.querySelector("#numbers #other-delta");
     otherDelta.innerHTML = getInnerHtml('Other', Math.round(store.hoveredDistricts.delta.numVotes.other, false))
 
     ////////////////////////////////////////////////
+
+    const delta2020 = document.querySelector("#numbers #dem-delta");
+    delta2020.innerHTML = getInnerHtml('DEM', Math.round(store.hoveredDistricts.delta.numVotes.dem.toFixed(2), false))
+
+    const delta2024 = document.querySelector("#numbers #gop-delta");
+    delta2024.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(2), false))
+
+    const deltaOther = document.querySelector("#numbers #other-delta");
+    deltaOther.innerHTML = getInnerHtml('Other', Math.round(store.hoveredDistricts.delta.numVotes.other, false))
+    ////////////////////////////////////////////////
+    const total2020Num = document.querySelector("#numbers #total-2020");
+    total2020Num.innerHTML = getInnerHtml('Total', Math.round(store.hoveredDistricts._2020.numVotes.total, false))
+
+    const total2024Num = document.querySelector("#numbers #total-2024");
+    total2024Num.innerHTML = getInnerHtml('Total', Math.round(store.hoveredDistricts._2024.numVotes.total, false))
+
+    const totalDeltaNum = document.querySelector("#numbers #total-delta");
+    totalDeltaNum.innerHTML = getInnerHtml('Total', Math.round(store.hoveredDistricts._2024.numVotes.total + store.hoveredDistricts._2020.numVotes.total, false))
 }
 
 function getInnerHtml(title, value, _pct) {
