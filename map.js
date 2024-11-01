@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////
 //Prep map initialization///
 //////////////////////////////////////////////////
-const mapboxKey = 'pk.eyJ1Ijoid2ZpZWxkLWN1bnkiLCJhIjoiY2p6YTJnN2lzMDB1aDNicm9qbzN6d2F5dCJ9.eOQlPpQf5uyOJANVWurDDA'
+const mapboxKey = 'pk.eyJ1IjoiY3VueWN1ciIsImEiOiJfQmNSMF9NIn0.uRgbcFeJbw2xyTUZY8gYeA'
 
 const transformRequest = (url, resourceType) => {
     if (isMapboxURL(url)) {
@@ -10,6 +10,7 @@ const transformRequest = (url, resourceType) => {
     return { url }
 }
 
+const mapboxStyleURL = 'mapbox://styles/cunycur/cm2yzn8mp00ox01pa3oxc4syx';
 //////////////////////////////////////////////////
 //Create 2020 Map//
 //////////////////////////////////////////////////
@@ -17,7 +18,7 @@ let hovered2020PolygonId = null;
 let hovered2024PolygonId = null;
 var _2020 = new maplibregl.Map({
     container: "before",
-    style: "mapbox://styles/wfield-cuny/cl0s6ydly000014nmcial1tgu",
+    style: mapboxStyleURL,
     center: [-73.9438, 40.7811],
     zoom: 8.5,
     transformRequest
@@ -34,12 +35,13 @@ _2020.on('styledata', () => {
             'id': '2020_results',
             'type': 'fill',
             'source': 'results_src',
+            'filter': ['>', ['to-number', ['get', 'totvote20'], 0], 10],
             'layout': {},
             'paint': {
                 'fill-color': fillExp20,
                 'fill-opacity': 0.8
             }
-        }, 'airport-label');
+        }, 'county-outline');
         _2020.addLayer({
             'id': '2020_results-line',
             'type': 'line',
@@ -54,7 +56,7 @@ _2020.on('styledata', () => {
                     0
                 ]
             }
-        }, 'airport-label');
+        }, 'county-outline');
     }
 })
 
@@ -63,7 +65,7 @@ _2020.on('styledata', () => {
 //////////////////////////////////////////////////
 var _2024 = new maplibregl.Map({
     container: "after",
-    style: "mapbox://styles/wfield-cuny/cl0s6ydly000014nmcial1tgu",
+    style: mapboxStyleURL,
     center: [-73.9438, 40.7811],
     zoom: 8.5,
     transformRequest
@@ -80,12 +82,13 @@ _2024.on('styledata', () => {
             'id': '2024_results',
             'type': 'fill',
             'source': 'results_src',
+            'filter': ['>', ['to-number', ['get', 'totvote24'], 0], 10],
             'layout': {},
             'paint': {
                 'fill-color': fillExp24,
                 'fill-opacity': 0.8
             }
-        }, 'airport-label');
+        }, 'county-outline');
 
         _2024.addLayer({
             'id': '2024_results-line',
@@ -101,7 +104,7 @@ _2024.on('styledata', () => {
                     0
                 ]
             }
-        }, 'airport-label');
+        }, 'county-outline');
     }
 });
 
@@ -114,7 +117,7 @@ var map = new maplibregl.Compare(_2020, _2024, container, {
     // Set this to enable comparing two maps by mouse movement:
     // m ousemove: true
 });
-
+_2024.addControl(new maplibregl.NavigationControl(), 'bottom-right');
 //////////////////////////////////////////////////
 //Hover///
 //////////////////////////////////////////////////

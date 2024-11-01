@@ -29,105 +29,12 @@
     </style>
     <script src="maplibre-gl-compare.js"></script>
     <link rel="stylesheet" href="maplibre-gl-compare.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+
 </head>
 
 <body>
-    <style>
-        body {
-            overflow: hidden;
-        }
-
-        body * {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-        }
-
-        #legend,
-        #opacity-container {
-            position: absolute;
-            z-index: 2;
-            background-color: white;
-            padding: 4px 15px;
-            margin: 5px;
-            box-shadow: 2px 2px 8px darkgray;
-        }
-
-        #legend {
-            bottom: 0;
-        }
-
-        #opacity-container {}
-
-        .table-container {
-            position: absolute;
-            z-index: 2;
-            margin: 5px;
-            /* min-width: 40%; */
-            width: 35%;
-            min-width: 300px;
-            max-width: 400px;
-            display: none;
-        }
-
-        @media screen and (max-width: 990px) {
-
-            #legend,
-            .table-container {
-                font-size: x-small;
-            }
-        }
-
-        @media screen and (max-width: 1068px) and (min-width:991px) {
-
-            #legend,
-            .table-container {
-                font-size: small;
-            }
-        }
-
-        @media screen and (max-width: 608px) {
-            .table-container {
-                position: absolute;
-                z-index: 2;
-                margin: 5px;
-                /* min-width: 40%; */
-                width: calc(100% - 10px);
-                max-width: none;
-            }
-
-            .table-container#numbers {
-                left: 0;
-                transform: translateY(90%);
-                margin-top: 0px !important;
-            }
-        }
-
-        td {
-            padding: 1px 5px !important;
-        }
-
-        .table-container#numbers {
-            right: 0;
-        }
-
-        .maplibregl-compare {
-            pointer-events: none;
-        }
-
-        .maplibregl-compare .compare-swiper-vertical {
-            pointer-events: all;
-        }
-    </style>
+    <img class="cuny-logo" src="cunygc_logo.png" />
     <!-- <div id="opacity-container">
         <label for="opacity-slider" class="form-label">Overlay Opacity</label>
         <input value="80" type="range" class="form-range" id="opacity-slider">
@@ -135,12 +42,13 @@
     <div class="table-container" id="percents">
         <table class="table table-bordered">
             <thead>
-                <h5 style="background-color: lightgray; padding:5px;">2020/2024 Percents: <span
-                        class="ed"></span></span></h5>
+                <h5 style="background-color: lightgray; padding:5px;">2020/2024 Vote Share
+                    <span class="ed"></span></span>
+                </h5>
                 <tr>
                     <th>2020</th>
                     <th>2024</th>
-                    <th>Percent Change</th>
+                    <th>% Point Change</th>
                 </tr>
             </thead>
             <tbody>
@@ -160,7 +68,8 @@
     <div class="table-container" id="numbers">
         <table class="table table-bordered">
             <thead>
-                <h5 style="background-color: lightgray; padding:5px;">2020/2024 Votes: <span class="ed"></span></span>
+                <h5 style="background-color: lightgray; padding:5px;">2020/2024 Number of Votes
+                    <span class="ed"></span></span>
                 </h5>
                 <tr>
                     <th>2020</th>
@@ -188,7 +97,7 @@
         </table>
     </div>
     <div id="legend">
-        <h5>Harris Vote Share</h5>
+        <!-- <h5>Harris Vote Share</h5> -->
     </div>
 
     <div id="comparison-container">

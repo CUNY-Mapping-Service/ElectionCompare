@@ -19,8 +19,8 @@ if (legend) {
         legend.innerHTML += `
     <div class="legend-item">
         <span style="display:inline-block;width:16px; height:16px;background-color:${colorScale[i].color}"></span>
-        <span class="pct">Greater than ${colorScale[i].pct}%</span>
-    </div>`
+        <span class="pct">${colorScale[i].label}</span >
+    </div > `
     }
 }
 
@@ -46,10 +46,10 @@ function updateUI() {
     ////////////////////////////////////////////////
 
     const demDeltaPct = document.querySelector("#percents #dem-delta");
-    demDeltaPct.innerHTML = getInnerHtml('DEM', store.hoveredDistricts.delta.pct.dem.toFixed(2), true)
+    demDeltaPct.innerHTML = getInnerHtml('DEM', store.hoveredDistricts.delta.pct.dem.toFixed(1), true)
 
     const gopDeltaPct = document.querySelector("#percents #gop-delta");
-    gopDeltaPct.innerHTML = getInnerHtml('GOP', store.hoveredDistricts.delta.pct.gop.toFixed(2), true)
+    gopDeltaPct.innerHTML = getInnerHtml('GOP', store.hoveredDistricts.delta.pct.gop.toFixed(1), true)
 
     ////////////////////////////////////////////////
 
@@ -70,18 +70,18 @@ function updateUI() {
     ////////////////////////////////////////////////
 
     const demDelta = document.querySelector("#numbers #dem-delta");
-    demDelta.innerHTML = getInnerHtml('DEM', Math.round(store.hoveredDistricts.delta.numVotes.dem.toFixed(2), false))
+    demDelta.innerHTML = getInnerHtml('DEM', Math.round(store.hoveredDistricts.delta.numVotes.dem.toFixed(1), false))
 
     const gopDelta = document.querySelector("#numbers #gop-delta");
-    gopDelta.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(2), false))
+    gopDelta.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(1), false))
 
     ////////////////////////////////////////////////
 
     const delta2020 = document.querySelector("#numbers #dem-delta");
-    delta2020.innerHTML = getInnerHtml('DEM', Math.round(store.hoveredDistricts.delta.numVotes.dem.toFixed(2), false))
+    delta2020.innerHTML = getInnerHtml('DEM', Math.round(store.hoveredDistricts.delta.numVotes.dem.toFixed(1), false))
 
     const delta2024 = document.querySelector("#numbers #gop-delta");
-    delta2024.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(2), false))
+    delta2024.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(1), false))
 
 
     ////////////////////////////////////////////////
@@ -93,8 +93,12 @@ function updateUI() {
 
     const totalDeltaNum = document.querySelector("#numbers #total-delta");
     totalDeltaNum.innerHTML = getInnerHtml('Total', Math.round(store.hoveredDistricts._2024.numVotes.total + store.hoveredDistricts._2020.numVotes.total, false))
+
+    const edContainers = Array.from(document.getElementsByClassName('ed'))
+
+    edContainers.forEach(el => el.innerHTML = `(District ${store.hoveredDistricts.ed})`)
 }
 
 function getInnerHtml(title, value, _pct) {
-    return `<span style="float:left">${title}</span><span style="float:right">${value}${_pct ? '%' : ''}</span>`
+    return `<span style="float:left" > ${title}</span > <span style="float:right">${value}${_pct ? '%' : ''}</span>`
 }

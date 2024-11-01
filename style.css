@@ -1,0 +1,106 @@
+        body {
+            overflow: hidden;
+        }
+
+        body * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #legend,
+        #opacity-container {
+            position: absolute;
+            z-index: 2;
+            background-color: white;
+            padding: 4px 15px;
+            margin: 5px;
+            box-shadow: 2px 2px 8px darkgray;
+        }
+
+        #legend {
+            bottom: 0;
+        }
+
+        #opacity-container {}
+
+        .table-container {
+            position: absolute;
+            z-index: 2;
+            margin: 5px;
+            /* min-width: 40%; */
+            width: 35%;
+            min-width: 300px;
+            max-width: 400px;
+            display: none;
+        }
+
+        @media screen and (max-width: 990px) {
+
+            #legend,
+            .table-container {
+                font-size: x-small;
+            }
+        }
+
+        @media screen and (max-width: 1068px) and (min-width:991px) {
+
+            #legend,
+            .table-container {
+                font-size: small;
+            }
+        }
+
+        @media screen and (max-width: 608px) {
+            .table-container {
+                position: absolute;
+                z-index: 2;
+                margin: 5px;
+                /* min-width: 40%; */
+                width: calc(100% - 10px);
+                max-width: none;
+            }
+
+            .table-container#numbers {
+                left: 0;
+                transform: translateY(90%);
+                margin-top: 0px !important;
+            }
+        }
+
+        td {
+            padding: 1px 5px !important;
+        }
+
+        .table-container#numbers {
+            right: 0;
+        }
+
+        .maplibregl-compare {
+            pointer-events: none;
+        }
+
+        .maplibregl-compare .compare-swiper-vertical {
+            pointer-events: all;
+        }
+
+        .cuny-logo {
+            z-index: 2;
+            position: absolute;
+            max-width: 200px;
+            right: 45px;
+            bottom: 36px;
+        }
+
+        .ed {
+            font-size: small;
+        }

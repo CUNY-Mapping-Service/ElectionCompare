@@ -11,8 +11,8 @@ const store = {
 
         const _2020 = { aded24: _2020Info.aded24 }, _2024 = { aded24: _2024Info.aded24 }, delta = {};
         _2020.pct = {
-            dem: ((+_2020Info.biden20 / +_2020Info.totvote20) * 100).toFixed(2),
-            gop: ((+_2020Info.trump20 / +_2020Info.totvote20) * 100).toFixed(2),
+            dem: ((+_2020Info.biden20 / +_2020Info.totvote20) * 100).toFixed(1),
+            gop: ((+_2020Info.trump20 / +_2020Info.totvote20) * 100).toFixed(1),
         }
 
         _2020.numVotes = {
@@ -22,8 +22,8 @@ const store = {
         }
 
         _2024.pct = {
-            dem: ((+_2020Info.harris24 / +_2020Info.totvote24) * 100).toFixed(2),
-            gop: ((+_2020Info.trump24 / +_2020Info.totvote24) * 100).toFixed(2),
+            dem: ((+_2020Info.harris24 / +_2020Info.totvote24) * 100).toFixed(1),
+            gop: ((+_2020Info.trump24 / +_2020Info.totvote24) * 100).toFixed(1),
         }
 
         _2024.numVotes = {
@@ -43,6 +43,7 @@ const store = {
         }
 
         this.hoveredDistricts = {
+            ed: _2020Info.aded24,
             _2020,
             _2024,
             delta
