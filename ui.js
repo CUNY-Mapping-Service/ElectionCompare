@@ -35,9 +35,6 @@ function updateUI() {
     const pctTrump2020 = document.querySelector("#percents #trump-2020");
     pctTrump2020.innerHTML = getInnerHtml('Trump', store.hoveredDistricts._2020.pct.gop, true)
 
-    const pctOther2020 = document.querySelector("#percents #other-2020");
-    pctOther2020.innerHTML = getInnerHtml('Other', store.hoveredDistricts._2020.pct.other, true)
-
     ////////////////////////////////////////////////
 
     const pctHarris2024 = document.querySelector("#percents #harris-2024");
@@ -45,9 +42,6 @@ function updateUI() {
 
     const pctTrump2024 = document.querySelector("#percents #trump-2024");
     pctTrump2024.innerHTML = getInnerHtml('Trump', store.hoveredDistricts._2024.pct.gop, true)
-
-    const pctOther2024 = document.querySelector("#percents #other-2024");
-    pctOther2024.innerHTML = getInnerHtml('Other', store.hoveredDistricts._2024.pct.other, true)
 
     ////////////////////////////////////////////////
 
@@ -57,9 +51,6 @@ function updateUI() {
     const gopDeltaPct = document.querySelector("#percents #gop-delta");
     gopDeltaPct.innerHTML = getInnerHtml('GOP', store.hoveredDistricts.delta.pct.gop.toFixed(2), true)
 
-    const otherDeltaPct = document.querySelector("#percents #other-delta");
-    otherDeltaPct.innerHTML = getInnerHtml('Other', store.hoveredDistricts.delta.pct.other.toFixed(2), true)
-
     ////////////////////////////////////////////////
 
     const numBiden2020 = document.querySelector("#numbers #biden-2020");
@@ -67,9 +58,6 @@ function updateUI() {
 
     const numTrump2020 = document.querySelector("#numbers #trump-2020");
     numTrump2020.innerHTML = getInnerHtml('Trump', Math.round(store.hoveredDistricts._2020.numVotes.gop, false))
-
-    const numOther2020 = document.querySelector("#numbers #other-2020");
-    numOther2020.innerHTML = getInnerHtml('Other', Math.round(store.hoveredDistricts._2020.numVotes.other, false))
 
     ////////////////////////////////////////////////
 
@@ -79,9 +67,6 @@ function updateUI() {
     const numTrump2024 = document.querySelector("#numbers #trump-2024");
     numTrump2024.innerHTML = getInnerHtml('Trump', Math.round(store.hoveredDistricts._2024.numVotes.gop, false))
 
-    const numOther2024 = document.querySelector("#numbers #other-2024");
-    numOther2024.innerHTML = getInnerHtml('Other', Math.round(store.hoveredDistricts._2024.numVotes.other, false))
-
     ////////////////////////////////////////////////
 
     const demDelta = document.querySelector("#numbers #dem-delta");
@@ -89,9 +74,6 @@ function updateUI() {
 
     const gopDelta = document.querySelector("#numbers #gop-delta");
     gopDelta.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(2), false))
-
-    const otherDelta = document.querySelector("#numbers #other-delta");
-    otherDelta.innerHTML = getInnerHtml('Other', Math.round(store.hoveredDistricts.delta.numVotes.other, false))
 
     ////////////////////////////////////////////////
 
@@ -101,8 +83,7 @@ function updateUI() {
     const delta2024 = document.querySelector("#numbers #gop-delta");
     delta2024.innerHTML = getInnerHtml('GOP', Math.round(store.hoveredDistricts.delta.numVotes.gop.toFixed(2), false))
 
-    const deltaOther = document.querySelector("#numbers #other-delta");
-    deltaOther.innerHTML = getInnerHtml('Other', Math.round(store.hoveredDistricts.delta.numVotes.other, false))
+
     ////////////////////////////////////////////////
     const total2020Num = document.querySelector("#numbers #total-2020");
     total2020Num.innerHTML = getInnerHtml('Total', Math.round(store.hoveredDistricts._2020.numVotes.total, false))

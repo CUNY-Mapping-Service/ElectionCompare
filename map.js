@@ -24,26 +24,26 @@ var _2020 = new maplibregl.Map({
 });
 
 _2020.on('styledata', () => {
-    if (!_2020.getSource('2020_results_src')) {
-        _2020.addSource('2020_results_src', {
+    if (!_2020.getSource('results_src')) {
+        _2020.addSource('results_src', {
             'type': 'geojson',
-            'data': '2020.geojson',
-            'promoteId': 'elect_dist'
+            'data': 'results.geojson',
+            'promoteId': 'aded24'
         })
         _2020.addLayer({
             'id': '2020_results',
             'type': 'fill',
-            'source': '2020_results_src',
+            'source': 'results_src',
             'layout': {},
             'paint': {
-                'fill-color': fillExp,
+                'fill-color': fillExp20,
                 'fill-opacity': 0.8
             }
         }, 'airport-label');
         _2020.addLayer({
             'id': '2020_results-line',
             'type': 'line',
-            'source': '2020_results_src',
+            'source': 'results_src',
             'layout': {},
             'paint': {
                 'line-color': '#0fff',
@@ -70,19 +70,19 @@ var _2024 = new maplibregl.Map({
 });
 
 _2024.on('styledata', () => {
-    if (!_2024.getSource('2024_results_src')) {
-        _2024.addSource('2024_results_src', {
+    if (!_2024.getSource('results_src')) {
+        _2024.addSource('results_src', {
             'type': 'geojson',
-            'data': '2024.geojson',
-            'promoteId': 'elect_dist'
+            'data': 'results.geojson',
+            'promoteId': 'aded24'
         })
         _2024.addLayer({
             'id': '2024_results',
             'type': 'fill',
-            'source': '2024_results_src',
+            'source': 'results_src',
             'layout': {},
             'paint': {
-                'fill-color': fillExp,
+                'fill-color': fillExp24,
                 'fill-opacity': 0.8
             }
         }, 'airport-label');
@@ -90,7 +90,7 @@ _2024.on('styledata', () => {
         _2024.addLayer({
             'id': '2024_results-line',
             'type': 'line',
-            'source': '2024_results_src',
+            'source': 'results_src',
             'layout': {},
             'paint': {
                 'line-color': '#0fff',
@@ -133,20 +133,20 @@ _2024.on('mousemove', '2024_results', (e) => {
     if (swiper) return;
     if (hovered2020PolygonId !== null) {
         _2020.setFeatureState(
-            { source: '2020_results_src', id: hovered2020PolygonId },
+            { source: 'results_src', id: hovered2020PolygonId },
             { hover: false }
         );
     }
     if (e.features.length > 0) {
         if (hovered2024PolygonId !== null) {
             _2024.setFeatureState(
-                { source: '2024_results_src', id: hovered2024PolygonId },
+                { source: 'results_src', id: hovered2024PolygonId },
                 { hover: false }
             );
         }
         hovered2024PolygonId = e.features[0].id;
         _2024.setFeatureState(
-            { source: '2024_results_src', id: hovered2024PolygonId },
+            { source: 'results_src', id: hovered2024PolygonId },
             { hover: true }
         );
     }
@@ -162,7 +162,7 @@ _2024.on('mouseleave', '2024_results', (e) => {
     if (swiper) return;
     if (hovered2020PolygonId !== null) {
         _2020.setFeatureState(
-            { source: '2020_results_src', id: hovered2020PolygonId },
+            { source: 'results_src', id: hovered2020PolygonId },
             { hover: false }
         );
     }
@@ -178,20 +178,20 @@ _2020.on('mousemove', '2020_results', (e) => {
     if (swiper) return;
     if (hovered2024PolygonId !== null) {
         _2024.setFeatureState(
-            { source: '2024_results_src', id: hovered2024PolygonId },
+            { source: 'results_src', id: hovered2024PolygonId },
             { hover: false }
         );
     }
     if (e.features.length > 0) {
         if (hovered2020PolygonId !== null) {
             _2020.setFeatureState(
-                { source: '2020_results_src', id: hovered2020PolygonId },
+                { source: 'results_src', id: hovered2020PolygonId },
                 { hover: false }
             );
         }
         hovered2020PolygonId = e.features[0].id;
         _2020.setFeatureState(
-            { source: '2020_results_src', id: hovered2020PolygonId },
+            { source: 'results_src', id: hovered2020PolygonId },
             { hover: true }
         );
     }
@@ -199,7 +199,7 @@ _2020.on('mousemove', '2020_results', (e) => {
     _2020.getCanvas().style.cursor = 'pointer';
     const _2024Info = _2024.queryRenderedFeatures(e.point, { layers: ['2024_results'] });
     store.setHoveredDistricts(_2024Info[0].properties, e.features[0].properties);
-    // document.getElementsByClassName('ed').forEach(e => e.innerHTML = e.features[0].properties.elect_dist);
+    // document.getElementsByClassName('ed').forEach(e => e.innerHTML = e.features[0].properties.aded24);
 
 });
 
@@ -207,7 +207,7 @@ _2020.on('mouseleave', '2020_results', () => {
     if (swiper) return;
     if (hovered2020PolygonId !== null) {
         _2020.setFeatureState(
-            { source: '2020_results_src', id: hovered2020PolygonId },
+            { source: 'results_src', id: hovered2020PolygonId },
             { hover: false }
         );
     }

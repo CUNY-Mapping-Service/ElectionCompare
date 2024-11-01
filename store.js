@@ -9,43 +9,37 @@ const store = {
         // this.hoveredDistricts._2020 = _2020Info;
         // this.hoveredDistricts._2024 = _2024Info;
 
-        const _2020 = { elect_dist: _2020Info.elect_dist }, _2024 = { elect_dist: _2024Info.elect_dist }, delta = {};
+        const _2020 = { aded24: _2020Info.aded24 }, _2024 = { aded24: _2024Info.aded24 }, delta = {};
         _2020.pct = {
-            dem: _2020Info.dem.toFixed(2),
-            gop: _2020Info.gop.toFixed(2),
-            other: ((100 - _2020Info.dem - _2020Info.gop)).toFixed(2)
+            dem: ((+_2020Info.biden20 / +_2020Info.totvote20) * 100).toFixed(2),
+            gop: ((+_2020Info.trump20 / +_2020Info.totvote20) * 100).toFixed(2),
         }
 
         _2020.numVotes = {
-            dem: Math.round((_2020Info.dem / 100) * _2020Info.total),
-            gop: Math.round((_2020Info.gop / 100) * _2020Info.total),
-            other: Math.round(((100 - _2020Info.dem - _2020Info.gop) / 100) * _2020Info.total),
-            total: _2020Info.total
+            dem: +_2020Info.biden20,
+            gop: +_2020Info.trump20,
+            total: +_2020Info.totvote20
         }
 
         _2024.pct = {
-            dem: _2024Info.dem.toFixed(2),
-            gop: _2024Info.gop.toFixed(2),
-            other: (100 - _2024Info.dem - _2024Info.gop).toFixed(2)
+            dem: ((+_2020Info.harris24 / +_2020Info.totvote24) * 100).toFixed(2),
+            gop: ((+_2020Info.trump24 / +_2020Info.totvote24) * 100).toFixed(2),
         }
 
         _2024.numVotes = {
-            dem: Math.round((_2024Info.dem / 100) * _2024Info.total),
-            gop: Math.round((_2024Info.gop / 100) * _2024Info.total),
-            other: Math.round(((100 - _2024Info.dem - _2024Info.gop) / 100) * _2024Info.total),
-            total: _2024Info.total
+            dem: +_2024Info.harris24,
+            gop: +_2024Info.trump24,
+            total: +_2024Info.totvote24
         }
 
         delta.pct = {
             dem: _2024.pct.dem - _2020.pct.dem,
-            gop: _2024.pct.gop - _2020.pct.gop,
-            other: _2024.pct.other - _2020.pct.other
+            gop: _2024.pct.gop - _2020.pct.gop
         }
 
         delta.numVotes = {
             dem: _2024.numVotes.dem - _2020.numVotes.dem,
-            gop: _2024.numVotes.gop - _2020.numVotes.gop,
-            other: _2024.numVotes.other - _2020.numVotes.other
+            gop: _2024.numVotes.gop - _2020.numVotes.gop
         }
 
         this.hoveredDistricts = {
