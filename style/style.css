@@ -31,6 +31,10 @@
             bottom: 0;
         }
 
+        #legend img {
+            max-width: 200px;
+        }
+
         #opacity-container {}
 
         .table-container {

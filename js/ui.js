@@ -13,7 +13,7 @@ if(opSlider){
 ///////////////////////////////////////////////////
 //Legend
 ///////////////////////////////////////////////////
-const legend = document.getElementById('legend');
+/*const legend = document.getElementById('legend');
 if (legend) {
     for (let i = 0; i < colorScale.length; i++) {
         legend.innerHTML += `
@@ -22,7 +22,7 @@ if (legend) {
         <span class="pct">${colorScale[i].label}</span >
     </div > `
     }
-}
+}*/
 
 ///////////////////////////////////////////////////
 //Update UI
