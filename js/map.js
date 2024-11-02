@@ -66,7 +66,7 @@ _2020.on('styledata', () => {
 var _2024 = new maplibregl.Map({
     container: "after",
     style: mapboxStyleURL,
-    center: [-73.9438, 40.7811],
+    center: [-73.9438, 40.710],
     zoom: 10,
     transformRequest
 });
