@@ -20,7 +20,7 @@ var _2020 = new maplibregl.Map({
     container: "before",
     style: mapboxStyleURL,
     center: [-73.9438, 40.7811],
-    zoom: 8.5,
+    zoom: 10,
     transformRequest
 });
 
@@ -67,7 +67,7 @@ var _2024 = new maplibregl.Map({
     container: "after",
     style: mapboxStyleURL,
     center: [-73.9438, 40.7811],
-    zoom: 8.5,
+    zoom: 10,
     transformRequest
 });
 
