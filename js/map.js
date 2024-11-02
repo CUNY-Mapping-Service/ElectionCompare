@@ -19,7 +19,7 @@ let hovered2024PolygonId = null;
 var _2020 = new maplibregl.Map({
     container: "before",
     style: mapboxStyleURL,
-    center: [-73.9438, 40.7811],
+    center: [-73.9438, 40.710],
     zoom: 10,
     transformRequest
 });
