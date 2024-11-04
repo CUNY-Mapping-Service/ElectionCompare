@@ -35,11 +35,11 @@ _2020.on('styledata', () => {
             'id': '2020_results',
             'type': 'fill',
             'source': 'results_src',
-            'filter': ['>', ['to-number', ['get', 'totvote20'], 0], 10],
+            //'filter': ['>', ['to-number', ['get', 'totvote20'], 0], 10],
             'layout': {},
             'paint': {
                 'fill-color': fillExp20,
-                'fill-opacity': 0.8
+                'fill-opacity': ['case',['>', ['to-number', ['get', 'totvote20'], 0], 10],.8,0],
             }
         }, 'county-outline');
         _2020.addLayer({
@@ -82,11 +82,11 @@ _2024.on('styledata', () => {
             'id': '2024_results',
             'type': 'fill',
             'source': 'results_src',
-            'filter': ['>', ['to-number', ['get', 'totvote24'], 0], 10],
+            //'filter': ['>', ['to-number', ['get', 'totvote24'], 0], 10],
             'layout': {},
             'paint': {
                 'fill-color': fillExp24,
-                'fill-opacity': 0.8
+                'fill-opacity': ['case',['>', ['to-number', ['get', 'totvote24'], 0], 10],.8,0],
             }
         }, 'county-outline');
 
