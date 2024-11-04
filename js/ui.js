@@ -103,7 +103,8 @@ function updateUI() {
 
     const edContainers = Array.from(document.getElementsByClassName('ed'))
 
-    edContainers.forEach(el => el.innerHTML = `(District ${parseInt(store.hoveredDistricts.ed.substring(0, 2))}-${parseInt(store.hoveredDistricts.ed.substring(2, 5))})`)
+    // edContainers.forEach(el => el.innerHTML = `(District ${parseInt(store.hoveredDistricts.ed.substring(0, 2))}-${parseInt(store.hoveredDistricts.ed.substring(2, 5))})`)
+    edContainers.forEach(el => el.innerHTML = `(ED ${parseInt(store.hoveredDistricts.ed.substring(2, 5))} in AD ${parseInt(store.hoveredDistricts.ed.substring(0, 2))})`)
 }
 
 function getInnerHtml(title, value, _pct) {
