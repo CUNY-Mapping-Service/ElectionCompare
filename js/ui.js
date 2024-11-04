@@ -86,10 +86,18 @@ function updateUI() {
 
     const demDelta = document.querySelector("#numbers #dem-delta");
     demDelta.innerHTML = getInnerHtml('DEM', noDeltaData ? noDataNote : store.hoveredDistricts.delta.numVotes.dem.toFixed(1))
-
+    if (!noDeltaData) { 
+        demDelta.style.backgroundColor = +store.hoveredDistricts.delta.numVotes.dem > 0 ? '#9f9' : '#f99'; 
+    }else{
+        demDelta.style.backgroundColor = 'white';
+    }
     const gopDelta = document.querySelector("#numbers #gop-delta");
     gopDelta.innerHTML = getInnerHtml('GOP', noDeltaData ? noDataNote : store.hoveredDistricts.delta.numVotes.gop.toFixed(1))
-
+    if (!noDeltaData) { 
+        gopDelta.style.backgroundColor = +store.hoveredDistricts.delta.numVotes.gop > 0 ? '#9f9' : '#f99'; 
+    }else{
+        gopDelta.style.backgroundColor = 'white';
+    }
 
     ////////////////////////////////////////////////
     const total2020Num = document.querySelector("#numbers #total-2020");
