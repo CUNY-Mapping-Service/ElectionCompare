@@ -3,34 +3,34 @@
 //////////////////////////////////////////////////
 const colorScale = [
     {
-        pct: 90,
-        color: '#08519C',
-        label: "Dem vote share 80%-100%"
+        pct: 92,
+        color: '#034E7B',
+        label: "Dem vote share 92%-100%"
     },
     {
-        pct: 75,
-        color: '#4292C6',
-        label: "Dem vote share 60%-80%"
+        pct: 85,
+        color: '#4393C3',
+        label: "Dem vote share 85%-92%"
     },
     {
-        pct: 50,
+        pct: 63,
         color: '#9ECAE1',
-        label: "Dem vote share 50%-60%"
+        label: "Dem vote share 63%-85%"
     },
     {
-        pct: 25,
-        color: '#ffe0d2',
-        label: "GOP vote share 50%-60%"
+        pct: 45,
+        color: '#EFD7FF',
+        label: "GOP-leaning vote share 37%-63%"
     },
     {
-        pct: 10,
-        color: '#fd9272',
-        label: "GOP vote share 60%-80%"
+        pct: 30,
+        color: '#FF7F7F',
+        label: "GOP vote share 55%-70%"
     },
     {
         pct: 0,
-        color: '#de2e26',
-        label: "GOP vote share 80%-100%"
+        color: '#E60000',
+        label: "GOP vote share 70%-100%"
     }
 ]
 
