@@ -51,7 +51,7 @@ function updateUI() {
     ////////////////////////////////////////////////
 
     const demDeltaPct = document.querySelector("#percents #dem-delta");
-    demDeltaPct.innerHTML = getInnerHtml('DEM', noDeltaData ? noDataNote : store.hoveredDistricts.delta.pct.dem.toFixed(1), true)
+    demDeltaPct.innerHTML = getInnerHtml('DEM', noDeltaData ? noDataNote : store.hoveredDistricts.delta.pct.dem.toFixed(1), false)
     if (!noDeltaData) { 
         demDeltaPct.style.backgroundColor = +store.hoveredDistricts.delta.pct.dem > 0 ? '#9f9' : '#f99'; 
     }else{
@@ -60,7 +60,7 @@ function updateUI() {
 
 
     const gopDeltaPct = document.querySelector("#percents #gop-delta");
-    gopDeltaPct.innerHTML = getInnerHtml('GOP', noDeltaData ? noDataNote : store.hoveredDistricts.delta.pct.gop.toFixed(1), true)
+    gopDeltaPct.innerHTML = getInnerHtml('GOP', noDeltaData ? noDataNote : store.hoveredDistricts.delta.pct.gop.toFixed(1), false)
     if (!noDeltaData) {
         gopDeltaPct.style.backgroundColor = +store.hoveredDistricts.delta.pct.gop > 0 ? '#9f9' : '#f99';
     }else{
@@ -107,6 +107,15 @@ function updateUI() {
     edContainers.forEach(el => el.innerHTML = `(ED ${parseInt(store.hoveredDistricts.ed.substring(2, 5))} in AD ${parseInt(store.hoveredDistricts.ed.substring(0, 2))})`)
 }
 
+/**
+ * Generates an HTML string with a title aligned to the left and a value aligned to the right.
+ * If the _pct parameter is truthy, appends a '%' symbol to the value.
+ *
+ * @param {string} title - The title to display on the left.
+ * @param {number} value - The numeric value to display on the right.
+ * @param {boolean} _pct - If true, appends a '%' symbol to the value.
+ * @returns {string} An HTML string with the title and value formatted.
+ */
 function getInnerHtml(title, value, _pct) {
-    return `<span style="float:left" > ${title}</span > <span style="float:right">${value.toLocaleString()}</span>`
+    return `<span style="float:left" > ${title}</span > <span style="float:right">${value.toLocaleString()}${ _pct && !isNaN(value) ? '%' : ''}</span>`
 }

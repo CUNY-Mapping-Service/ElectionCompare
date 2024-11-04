@@ -10,6 +10,33 @@
             user-select: none;
         }
 
+        .slider-label {
+            display: inline-block;
+            pointer-events: none;
+        }
+
+        .maplibregl-compare .compare-swiper-vertical::after {
+            content: '2024';
+            position: absolute;
+            top: 100%;
+            text-align: righ;
+            right: -1em;
+            background: #00000057;
+            font-weight: bold;
+            padding: 0px 2px;
+        }
+
+        .maplibregl-compare .compare-swiper-vertical::before {
+            content: '2020';
+            position: absolute;
+            top: 100%;
+            text-align: righ;
+            left: -1em;
+            background: #00000057;
+            font-weight: bold;
+            padding: 0px 2px;
+        }
+
         .map {
             position: absolute;
             top: 0;

@@ -118,6 +118,13 @@ var map = new maplibregl.Compare(_2020, _2024, container, {
     // m ousemove: true
 });
 _2024.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+// _2024.once('idle', () => {
+
+//     const slider = document.getElementsByClassName('compare-swiper-vertical')[0];
+//     slider.innerHTML += `
+//     <div class="slider-label 2020">2020</div>
+//     <div class="slider-label 2024">2024</div>`
+// })
 //////////////////////////////////////////////////
 //Hover///
 //////////////////////////////////////////////////
