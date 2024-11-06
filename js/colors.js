@@ -43,7 +43,7 @@ fillExp20.push('rgba(0,0,0,0)')
 
 fillExp24 = ['case'];
 colorScale.forEach((f, i) => {
-    fillExp24.push(['>', ["*", ["/", ["to-number", ['get', 'harris24'], 0], ["to-number", ['get', 'totvote20'], 0]], 100], colorScale[i].pct]);
+    fillExp24.push(['>', ["*", ["/", ["to-number", ['get', 'harris24'], 0], ["to-number", ['get', 'totvote24'], 0]], 100], colorScale[i].pct]);
     fillExp24.push(colorScale[i].color)
 });
 fillExp24.push('rgba(0,0,0,0)')
